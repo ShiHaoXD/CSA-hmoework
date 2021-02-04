@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      background: rgb(212, 208, 208);
+      display: flex;
+      flex-wrap: wrap;
+    "
+  >
+    <div
+      class="topitem"
+      style="
+        width: 100%;
+        background: black;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 0;
+      "
+    >
+      <img
+        src="jr.jpg"
+        style="height: 40px; width: 30px; margin-right: auto; margin-left: 30px"
+      />
+      <span style="color: white; font-size: 12px; margin-right: 10px"
+        >导航链接一</span
+      >
+      <span style="color: white; font-size: 12px; margin-right: 10px"
+        >导航链接二</span
+      >
+      <span style="color: white; font-size: 12px; margin-right: 10px"
+        >导航链接三</span
+      >
+      <span style="color: white; font-size: 12px; margin-right: 10px"
+        >导航链接四</span
+      >
+    </div>
+    <div style="width: 100%; height: 50px"></div>
+    <div class="article" id="article_1">
+      <h1>文章一级标题</h1>
+      <h2>文章二级标题</h2>
+      <p style="color: gray">文章作者 文章发表时间</p>
+      <p style="text-indent: 2em">
+        重庆，简称“渝”，别称山城，是<strong>中华人民共和国</strong>省级行政区、直辖市、国家中心城市、超大城市，国务院批复确定的中国重要的中心城市之一、长江上游地区经济中心、国家重要的现代制造业基地、西南地区综合交通枢纽
+        。总面积8.24万平方千米，辖26个区、8个县、4个自治县，常住人口3124.32万人，城镇人口2086.99万人，常住外来人口达167.65万人。
+        重庆地处中国内陆西南部，是<a href="https://baike.baidu.com/item/%E9%95%BF%E6%B1%9F%E4%B8%8A%E6%B8%B8%E5%9C%B0%E5%8C%BA/724674?fr=aladdin">长江上游地区</a>的经济、金融、科创、航运和商贸物流中心，国家物流枢纽
+        ，西部大开发重要的战略支点、“一带一路”和长江经济带重要联结点以及内陆开放高地、山清水秀美丽之地；
+        既以江城、雾都、桥都著称，又以山城扬名。
+        重庆以汉族为主，少数民族主要有土家族、苗族等。旅游资源丰富，有长江三峡、世界文化遗产大足石刻、世界自然遗产武隆喀斯特和南川金佛山等景观。
+        重庆是国家历史文化名城。
+      </p>
+      <img src="cq1.jpg" style="width: 100%" />
+      <p style="text-indent: 2em">
+        1189年，宋光宗赵惇先封恭王再即帝位，自诩“双重喜庆”，重庆由此得名。重庆是“红岩精神”起源地，巴渝文化发祥地，“火锅”、“吊脚楼”等影响深远；在文字记载的3000余年中
+        ，曾三为国都，四次筑城，史称“巴渝” ；抗战时期为国民政府陪都。
+        重庆是西南地区最大的工商业城市， 国家重要的现代制造业基地。
+        有国家级重点实验室10个、国家级工程技术研究中心10个、高校68所， [
+        中国（重庆）自由贸易试验区、 中新（重庆）战略性互联互通示范项目、
+        两江新区 、渝新欧国际铁路、西部（重庆）科学城 等战略项目。
+      </p>
+    </div>
+    <div class="article" id="left_article">
+      <h3>这是一个侧栏，这是侧栏标题</h3>
+      <div class="h_item">
+        <span class="leftitem">请输入邮箱地址</span>
+        <div class="e_item">
+          <input type="text" class="text_k" />
+          <p style="color: gray">邮箱地址请按要求输入</p>
+        </div>
+      </div>
+      <div class="h_item">
+        <span class="leftitem">请输入密码</span>
+        <div class="e_item">
+          <input type="text" class="text_k" />
+        </div>
+      </div>
+      <div class="h_item">
+        <span class="leftitem">请重复输入密码</span>
+        <div class="e_item">
+          <input type="text" class="text_k" />
+          <p style="color: gray">输入6~16位英文数字</p>
+        </div>
+      </div>
+      <div class="h_item">
+        <span class="leftitem">性别</span>
+        <div class="e_item">
+          <input type="radio" name="work" />男
+          <input type="radio" name="work" />女
+        </div>
+      </div>
+      <div class="h_item">
+        <span class="leftitem">城市</span>
+        <div class="e_item">
+          <select>
+            <option>北京</option>
+            <option>重庆</option>
+            <option>南京</option>
+            <option>四川</option>
+          </select>
+        </div>
+      </div>
+      <div class="h_item">
+        <span class="leftitem">爱好</span>
+        <div class="e_item">
+          <input type="checkbox" />运动 <input type="checkbox" />艺术
+          <input type="checkbox" />科学
+        </div>
+      </div>
+      <div class="h_item" style="flex-grow: 1">
+        <span class="leftitem">个人描述</span>
+        <div class="e_item">
+          <textarea
+            cols="2"
+            rows="6"
+            style="width: 168px; height: 110px"
+          ></textarea>
+        </div>
+      </div>
+      <button type="submit" id="sub_bt">确认提交</button>
+    </div>
+    <div class="article" id="article_2">
+      <h1>文章一级标题</h1>
+      <h2>文章二级标题</h2>
+      <p style="color: gray">文章作者 文章发表时间</p>
+      <p style="text-indent: 2em">
+        重庆，简称“渝”，别称山城，是<strong>中华人民共和国</strong>省级行政区、直辖市、国家中心城市、超大城市，国务院批复确定的中国重要的中心城市之一、长江上游地区经济中心、国家重要的现代制造业基地、西南地区综合交通枢纽
+        。总面积8.24万平方千米，辖26个区、8个县、4个自治县，常住人口3124.32万人，城镇人口2086.99万人，常住外来人口达167.65万人。
+        重庆地处中国内陆西南部，是<a href="https://baike.baidu.com/item/%E9%95%BF%E6%B1%9F%E4%B8%8A%E6%B8%B8%E5%9C%B0%E5%8C%BA/724674?fr=aladdin">长江上游地区</a>的经济、金融、科创、航运和商贸物流中心，国家物流枢纽
+        ，西部大开发重要的战略支点、“一带一路”和长江经济带重要联结点以及内陆开放高地、山清水秀美丽之地；
+        既以江城、雾都、桥都著称，又以山城扬名。
+        重庆以汉族为主，少数民族主要有土家族、苗族等。旅游资源丰富，有长江三峡、世界文化遗产大足石刻、世界自然遗产武隆喀斯特和南川金佛山等景观。
+        重庆是国家历史文化名城。
+      </p>
+      <img src="cq1.jpg" style="width: 100%" />
+      <ul>
+        列表项目一
+      </ul>
+      <ul>
+        列表项目二
+      </ul>
+      <ul>
+        列表项目三
+      </ul>
+    </div>
+    <div
+      class="article"
+      id="article_3"
+      style="width: 740px; display: flex; flex-wrap: wrap"
+    >
+      <h1 style="width: 100%">图片</h1>
+      <div class="pic_show">
+        <p>海绵宝宝</p>
+        <img src="hmbb.jpg" style="width: 200px; height: 200px; margin: 10px" />
+      </div>
+      <div class="pic_show">
+        <p>海绵宝宝</p>
+        <img src="hmbb.jpg" style="width: 200px; height: 200px; margin: 10px" />
+      </div>
+      <div class="pic_show">
+        <p>海绵宝宝</p>
+        <img src="hmbb.jpg" style="width: 200px; height: 200px; margin: 10px" />
+      </div>
+      <div class="pic_show">
+        <p>海绵宝宝</p>
+        <img src="hmbb.jpg" style="width: 200px; height: 200px; margin: 10px" />
+      </div>
+      <div class="pic_show">
+        <p>海绵宝宝</p>
+        <img src="hmbb.jpg" style="width: 200px; height: 200px; margin: 10px" />
+      </div>
+      <div class="pic_show">
+        <p>海绵宝宝</p>
+        <img src="hmbb.jpg" style="width: 200px; height: 200px; margin: 10px" />
+      </div>
+    </div>
+    <div class="article" id="article_1">
+      <h1>文章一级标题</h1>
+      <h2>文章二级标题</h2>
+      <p style="color: gray">文章作者 文章发表时间</p>
+      <ol>
+        <li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
+      </ol>
+      <table border="1" style="text-align: center">
+        <tr style="background: black">
+          <th colspan="2" style="color: white">0.0</th>
+        </tr>
+        <tr>
+          <td style="width: 15px">1</td>
+          <td style="width: 525px">
+            <p>0.0</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="width: 15px">2</td>
+          <td style="width: 525px"><p>A.A</p></td>
+        </tr>
+
+        <tr>
+          <td style="width: 15px">3</td>
+          <td style="width: 525px"><p>O.O</p></td>
+        </tr>
+
+        <tr>
+          <td style="width: 15px">4</td>
+          <td style="width: 525px"><p>0。0</p></td>
+        </tr>
+        <tr style="background: gray">
+          <th colspan="2">0.0</th>
+        </tr>
+      </table>
+    </div>
+    <div
+      class="bottomitem"
+      style="
+        width: 100%;
+        background: black;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        color: white;
+        font-size: 12px;
+      "
+    >
+      版权所有@
+    </div>
+  </body>
+</html>
