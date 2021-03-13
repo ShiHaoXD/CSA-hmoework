@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    var ary1 = [1, [2, [3, [4, 5]]], 6];
+    let newArr1 = ary1.join().split(",").map(Number);
+    var ary2 = [1, [2, [3, [4, 5]]], 6];
+    let newArr2=[];
+    even(ary2);
+    function even(ary) {
+      for (i = 0; i < ary.length; i++) {
+        if (Array.isArray(ary[i])) {
+          even(ary[i]);
+        } else {
+          newArr2.push(ary[i]);
+        }
+      }
+    }
+    console.log(newArr1);
+    console.log(newArr2);
+  </script>
+</html>

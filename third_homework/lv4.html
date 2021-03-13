@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    var data = {
+      age: 18,
+      name: "liuruchao",
+      education: ["小学", "初中", "高中", "大学", undefined, null],
+      likesFood: new Set(["fish", "banana"]),
+      friends: [
+        { name: "summer", sex: "woman" },
+        { name: "daWen", sex: "woman" },
+        { name: "yang", sex: "man" },
+      ],
+      work: {
+        time: "2019",
+        project: { name: "test", obtain: ["css", "html", "js"] },
+      },
+      play: function () {
+        console.log("玩滑板");
+      },
+    };
+    function clone(target) {
+      if(target==='Object')
+      {
+        let cloneTarger={};
+        for(let i in target)
+        {
+          cloneTarger[i]=clone(target[i]);
+        }
+        return cloneTarger;
+      }
+      else if(Array.isArray(target))
+      {
+        let cloneTarger=[];
+        for(let i in target)
+        {
+          cloneTarger[i]=clone(target[i]);
+        }
+        return cloneTarger;
+      }
+      else
+      {
+        return target;
+      }
+    }
+    var dd=clone(data);
+    console.log(dd);
+  </script>
+</html>
