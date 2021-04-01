@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="Item">
+      <input />
+      <button type="leftIn">左键入</button>
+      <button type="rightIn">右键入</button>
+      <button type="leftOut">左键出</button>
+      <button type="rightOut">右键出</button>
+      <button type="clear">清空</button>
+      <button type="reOrder">重新排序</button>
+      <button type="randomCreate">随机生成</button>
+    </div>
+    <div class="mainItem"></div>
+  </body>
+  <script>
+    let subButton = document.getElementsByTagName("button");
+    let input = document.getElementsByTagName("input");
+    let mainItem = document.getElementsByClassName("mainItem")[0];
+    subButton[0].onclick = () => {
+      let newItem = document.createElement("div");
+      newItem.classList.add("newItem");
+      newItem.style.height = Number(input[0].value) +100+ "px";
+      newItem.innerText =Number(input[0].value);
+      mainItem.insertBefore(newItem, mainItem.childNodes[0]);
+    };
+    subButton[1].onclick = () => {
+      let newItem = document.createElement("div");
+      newItem.classList.add("newItem");
+      newItem.style.height = Number(input[0].value) +100+ "px";
+      newItem.innerText =Number(input[0].value);
+      mainItem.appendChild(newItem);
+    };
+    subButton[2].onclick = () => {
+      mainItem.removeChild(mainItem.firstChild);
+    };
+    subButton[3].onclick = () => {
+      mainItem.removeChild(mainItem.lastChild);
+    };
+    subButton[4].onclick = () => {
+      while (mainItem.hasChildNodes()) {
+        mainItem.removeChild(mainItem.firstChild);
+      }
+    };
+    subButton[5].onclick = reOrder;
+    subButton[6].onclick = () => {
+      let newItem = document.createElement("div");
+      let randomNum = Math.floor(Math.random() * 500);
+      newItem.classList.add("newItem");
+      newItem.style.height = (randomNum +100)+ "px";
+      newItem.innerText = randomNum;
+      mainItem.appendChild(newItem);
+    };
+    function getLen(parentItem) {
+      let length = 0;
+      while (parentItem.childNodes[length] != parentItem.lastChild) {
+        length++;
+      }
+      return length;
+    }
+    function swap(i,j) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          
+          temp = mainItem.childNodes[j].style.height;
+          text = mainItem.childNodes[j].innerText;
+          mainItem.childNodes[j].style.height =
+            mainItem.childNodes[j + 1].style.height;
+          mainItem.childNodes[j].innerText =
+            mainItem.childNodes[j + 1].innerText;
+          mainItem.childNodes[j + 1].style.height = temp;
+          mainItem.childNodes[j + 1].innerText = text;
+          resolve();
+        }, 200);
+      });
+    }
+    async function reOrder(){
+      let text, temp;
+      for (let i = 0; i <= getLen(mainItem) - 1; i++) {
+        for (let j = 0; j <= getLen(mainItem) - 1 - i; j++) {
+          if (
+            mainItem.childNodes[j].style.height >
+            mainItem.childNodes[j + 1].style.height
+          ) {
+            await swap(i,j);
+          }
+        }
+      }
+    }
+
+  </script>
+</html>

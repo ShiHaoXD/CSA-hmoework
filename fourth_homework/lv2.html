@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="item">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+    </ul>
+    <input type="text" id="input">
+    <button type="submit">增加评论</button>
+  </body>
+  <script>
+    let item = document.getElementById('item');
+    let submitButton=document.getElementsByTagName('button');
+    let liItem=document.getElementsByTagName("li");
+    for (let i = 0; i < liItem.length; i++) {
+      liItem[i].onclick = function () {
+        alert(liItem[i].innerText);
+      };
+      if (i % 2 == 1) {
+        liItem[i].style.backgroundColor = "red";
+      } else {
+        liItem[i].style.backgroundColor = "green";
+      }
+    }
+    submitButton[0].onclick=function()
+    {
+      let inputText=document.getElementById('input').value;
+      console.log(inputText);
+        if(inputText == "")
+        {
+        }
+        else
+        {
+        let newItem=document.createElement('li');
+        newItem.innerHTML=inputText;
+        item.appendChild(newItem);
+        document.getElementById('input').value="";
+        }
+    }
+
+  </script>
+</html>

@@ -1,0 +1,24 @@
+.newItem {
+  background-color: pink;
+  margin: 5px;
+  color: white;
+  width: 50%;
+  text-align: center;
+}
+.mainItem {
+  height: 600px;
+  width: 800px;
+  background: aqua;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Item{
+  margin-left: auto;
+  margin-right: auto;
+  width: 612px;
+  position:relative;
+  z-index: 99;
+}
