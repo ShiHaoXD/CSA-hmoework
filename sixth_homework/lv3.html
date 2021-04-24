@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div style="width: 800px">
+      <ul style="list-style-type: none; display: flex; flex-wrap: wrap">
+        <li>
+          <div>
+            <img
+              src="http://p2.music.126.net/jIEZXffS44O6FlYU-TqYqQ==/109951165808343719.jpg"
+            />
+            <span> 春日序曲|共享似锦繁花 </span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <img
+              src="http://p2.music.126.net/jIEZXffS44O6FlYU-TqYqQ==/109951165808343719.jpg"
+            />
+            <span> 春日序曲|共享似锦繁花 </span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <img
+              src="http://p2.music.126.net/jIEZXffS44O6FlYU-TqYqQ==/109951165808343719.jpg"
+            />
+            <span> 春日序曲|共享似锦繁花 </span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <img
+              src="http://p2.music.126.net/jIEZXffS44O6FlYU-TqYqQ==/109951165808343719.jpg"
+            />
+            <span> 春日序曲|共享似锦繁花 </span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <img
+              src="http://p2.music.126.net/jIEZXffS44O6FlYU-TqYqQ==/109951165808343719.jpg"
+            />
+            <span> 春日序曲|共享似锦繁花 </span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <img
+              src="http://p2.music.126.net/jIEZXffS44O6FlYU-TqYqQ==/109951165808343719.jpg"
+            />
+            <span> 春日序曲|共享似锦繁花 </span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <img
+              src="http://p2.music.126.net/jIEZXffS44O6FlYU-TqYqQ==/109951165808343719.jpg"
+            />
+            <span> 春日序曲|共享似锦繁花 </span>
+          </div>
+        </li>
+        <li>
+          <div>
+            <img
+              src="http://p2.music.126.net/jIEZXffS44O6FlYU-TqYqQ==/109951165808343719.jpg"
+            />
+            <span> 春日序曲|共享似锦繁花 </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <input type="text" />
+    <button type="submit">确认</button>
+    <ul class="searchResult" style="list-style-type: none" class="searchResult">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </body>
+  <script>
+     function func(text)
+     {
+       let res=JSON.parse(text);
+       let li=document.getElementsByTagName('li');
+         for(i=0;i<8;i++)
+         {
+           li[i].firstElementChild.firstElementChild.src=res.result[i].picUrl;
+           li[i].firstElementChild.lastElementChild.innerHTML=res.result[i].name;
+         }
+     }
+     function showSearch(Text)
+     {
+       let res=JSON.parse(Text);
+       let li=document.querySelectorAll('.searchResult li');
+       for(i=0;i<5;i++)
+       {
+         li[i].innerHTML=res.result.songs[i].name;
+       }
+     }
+    //  function ajaxGet(url,callback,data)   //lv2
+    // {
+    //   data=data||{};
+    //   let str="";
+    //   for (let i in data) {
+    //    str+=`${i}= ${data[i]}`;
+    //   }
+    //   url=url+str;
+    //   console.log(url);
+    //   let xhr=new XMLHttpRequest;
+    //   xhr.open('get',url,true);
+    //   xhr.onreadystatechange=()=>{
+    //     if(xhr.readyState==4&&xhr.status==200)
+    //     {
+    //       callback(xhr.responseText);
+    //     }
+    //   }
+    //   xhr.send();
+    // }
+    function ajaxGet(url,data) {
+       return new Promise(function (resolve, reject) {
+         let req = new XMLHttpRequest();
+         let str="";
+         data = data||{};
+         for(let i in data)
+         {      
+            str+=`${i}=${data[i]}`;
+         }
+         url=url+str;
+         req.open("GET",url, true);
+         req.onreadystatechange = function () {
+           if (req.readyState==4&&req.status==200) {
+             resolve(req.responseText);
+           }
+         };
+         req.onerror = function () {
+           reject(new Error(req.statusText));
+         };
+         req.send();
+       });
+     }
+     ajaxGet("http://musicapi.leanapp.cn/personalized",{}).then((value)=>{console.log(value);});
+
+
+     function ajaxOpen(URL,data) {
+      return new Promise(function (resolve, reject) {
+         let req = new XMLHttpRequest();
+         let str="";
+         data = data||{};
+         for(let i in data)
+         {      
+            str+=`${i}=${data[i]}&`;
+         }
+         req.open("GET",url, true);
+         req.onerror = function () {
+           reject(new Error(req.statusText));
+         };
+         req.send(str);
+       });
+     }
+
+
+     let subButton=document.getElementsByTagName('button');
+     let input=document.getElementsByTagName('input');
+     input[0].oninput=()=>{
+       ajaxGet("http://musicapi.leanapp.cn/search?",showSearch,{'keywords':input[0].value});
+     }
+     ajaxGet("http://musicapi.leanapp.cn/personalized",{}).then(func);
+  </script>
+</html>
