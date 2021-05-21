@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>手机网站</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="mask-off mask"></div>
+    <div class="btmask-off"></div>
+    <div class="search">
+      <div id="ct-search">
+        <a id="btn-cancel">取消</a>
+        <div id="ct-input">
+          <span id="icon-search"></span
+          ><input type="text" id="i-location" placeholder="搜索地区" value="" />
+        </div>
+      </div>
+      <div id="searchList"></div>
+      <div id="ct-history">
+        <a id="btn-clean"></a>
+        <p class="title">历史记录</p>
+        <ul class="ls-city"></ul>
+      </div>
+    </div>
+    <div class="airShow"></div>
+    <div class="btShow">
+      <div class="topItem"></div>
+      <div class="text"></div>
+      <button class="get">我知道了</button>
+    </div>
+    <div class="mainItem">
+      <div class="topItem">
+        <div class="back">
+          <img
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAyMiAyMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+DQogICAgPGRlZnM+DQogICAgICAgIDxwYXRoIGlkPSJhIiBkPSJNMTAgMThIMFYwaDEwdjE4eiIgLz4NCiAgICA8L2RlZnM+DQogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNiAyKSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4NCiAgICAgICAgPG1hc2sgaWQ9ImIiIGZpbGw9IiNmZmYiPg0KICAgICAgICAgICAgPHVzZSB4bGluazpocmVmPSIjYSIgLz4NCiAgICAgICAgPC9tYXNrPg0KICAgICAgICA8cGF0aCBkPSJNMi43MzggMTAuMDA2Yy0uNjA2LS41NTUtLjYwNi0xLjQ1NyAwLTIuMDEybDYuOTYtNi4zNzVjLjQwMy0uMzcuNDAzLS45NzQgMC0xLjM0My0uNDAzLS4zNy0xLjA2My0uMzctMS40NjUgMEwuOTA2IDYuOTg3Yy0xLjIwOCAxLjEwNy0xLjIwOCAyLjkyIDAgNC4wMjZsNy4zMjcgNi43MWMuNDAyLjM3IDEuMDYyLjM3IDEuNDY1IDBzLjQwMy0uOTczIDAtMS4zNDJsLTYuOTYtNi4zNzR6IiBmaWxsPSIjRkZGIiBtYXNrPSJ1cmwoI2IpIiAvPg0KICAgIDwvZz4NCjwvc3ZnPg=="
+          />
+        </div>
+        <div class="localCity" style="display: flex;">
+          <img
+            src="./images/location.png"
+            style="width: 16px; height: 16px; margin-right: 5px"
+            class="loc"
+          />
+          <div id="cityName">重庆 南岸</div>
+        </div>
+        <div class="share">分享</div>
+      </div>
+      <div class="airLevel"></div>
+      <div class="nowTemp">26</div>
+      <div class="nowWeather"></div>
+      <div class="nowWind-Humidity">
+        <div class="wind-hidden wind"></div>
+        <div class="humidity-show humidity"></div>
+      </div>
+      <div class="tip">现在的温度比较舒适~</div>
+    </div>
+    <div class="tempItem">
+      <div class="today"></div>
+      <div class="tomorrow"></div>
+    </div>
+    <div class="hoursWeather">
+      <ol></ol>
+    </div>
+    <div class="future">
+      <div class="topWeather"></div>
+      <div class="chart" style="width: 116vw; height: 20vh; margin-left: 6vw">
+        <canvas id="myChart"></canvas>
+      </div>
+      <div class="bottomWeather"></div>
+    </div>
+
+    <div class="bottomItem">
+      <div class="firstPage page"></div>
+      <div class="secondPage page"></div>
+    </div>
+
+    <script src="./Chart.min.2.9.2.js"></script>
+    <script>
+      let clockTemp = document.querySelector(".hoursWeather ol");
+      setInterval(() => {
+        if (document.querySelector(".wind-show") != null) {
+          document
+            .querySelector(".wind-show")
+            .setAttribute("class", "wind-hidden wind");
+          document
+            .querySelector(".humidity-hidden")
+            .setAttribute("class", "humidity-show humidity");
+        } else {
+          document
+            .querySelector(".wind-hidden")
+            .setAttribute("class", "wind-show wind");
+          document
+            .querySelector(".humidity-show")
+            .setAttribute("class", "humidity-hidden humidity");
+        }
+      }, 5000);
+    </script>
+    <script src="./js/chart.js"></script>
+    <script src="./js/data.js"></script>
+    <script>
+      function closeT() {
+        mask.setAttribute("class", "mask-off mask");
+        airShow.style.animation = "hiddenAir 0.5s ease  forwards";
+        document.querySelector("body").style.overflow = "auto";
+      }
+      let airLevel = document.querySelector(".airLevel");
+      let mask = document.querySelector(".mask");
+      let airShow = document.querySelector(".airShow");
+      airLevel.ontouchend = () => {
+        let mask = document.querySelector(".mask-off");
+        document.querySelector("body").style.overflow = "hidden";
+        mask.setAttribute("class", "mask-on mask");
+        airShow.style.animation = "showAir 0.5s ease  forwards";
+      };
+      mask.ontouchend = closeT;
+    </script>
+    <script></script>
+  </body>
+</html>
