@@ -37,42 +37,7 @@ var chart = createChart();
 request();
 
 //重庆url
-searchList.ontouchend = (e) => {
-  addHistory(e);
-  document.querySelector("#cityName").innerText = `${
-    e.target.textContent.split(",")[1]
-  } ${e.target.textContent.split(",")[2]}`;
-  localID.location = e.target.id;
-  cityID.location = e.target.id;
-  search.style.animation = "hiddenSearch 0.2s linear forwards";
-  searchList.style.visibility = "hidden";
-  document.querySelector("body").style.overflow = "auto";
-  request();
-};
-searchInput.onfocus = () => {
-  searchList.style.visibility = "visible";
-  searchList.innerHTML = "";
-};
-searchInput.onblur = () => {
-  searchList.style.visibility = "hidden";
-};
-searchInput.oninput = debounce(() => {
-  let pattern = new RegExp("^[\u4E00-\u9FA5]+$");
-  if (pattern.test(searchInput.value)) {
-    let text = { location: searchInput.value };
-    ajaxGet(searchurl, text, false).then((req) => {
-      let data = JSON.parse(req);
-      let searchItem = "";
-      for (let i = 0; i < data.location.length; i++) {
-        searchItem += `<div class="cityshow" id="${data.location[i].id}">${data.location[i].adm1},${data.location[i].adm2},${data.location[i].name}</div>`;
-      }
-      searchList.innerHTML = searchItem;
-    });
-  } else if (searchInput.value == null) {
-    let searchItem = "";
-    searchList.innerHTML = searchItem;
-  }
-}, 1000);
+
 
 function addHistory(e) {
   console.log(searchInput.value);
@@ -96,20 +61,6 @@ function renderHistory() {
   });
   historyList.innerHTML = dom;
 }
-loc.ontouchend = () => {
-  search.style.animation = "showSearch 0.2s linear forwards";
-  document.querySelector("body").style.overflow = "hidden";
-};
-btnCancel.ontouchend = () => {
-  search.style.animation = "hiddenSearch 0.2s linear forwards";
-  searchList.style.visibility = "hidden";
-  document.querySelector("body").style.overflow = "auto";
-};
-btnClean.ontouchend = () => {
-  history = [];
-  renderHistory();
-  document.querySelector("#ct-history").style.visibility = "hidden";
-};
 
 function getWeek(dateString) {
   var dateArray = dateString.split("-");
@@ -276,6 +227,59 @@ function createChart() {
 }
 
 function request() {
+
+  searchList.ontouchend = (e) => {
+    addHistory(e);
+    document.querySelector("#cityName").innerText = `${
+      e.target.textContent.split(",")[1]
+    } ${e.target.textContent.split(",")[2]}`;
+    localID.location = e.target.id;
+    cityID.location = e.target.id;
+    search.style.animation = "hiddenSearch 0.2s linear forwards";
+    searchList.style.visibility = "hidden";
+    document.querySelector("body").style.overflow = "auto";
+    request();
+  };
+  searchInput.onfocus = () => {
+    searchList.style.visibility = "visible";
+    searchList.innerHTML = "";
+  };
+  searchInput.onblur = () => {
+    searchList.style.visibility = "hidden";
+  };
+  searchInput.oninput = debounce(() => {
+    let pattern = new RegExp("^[\u4E00-\u9FA5]+$");
+    if (pattern.test(searchInput.value)) {
+      let text = { location: searchInput.value };
+      ajaxGet(searchurl, text, false).then((req) => {
+        let data = JSON.parse(req);
+        let searchItem = "";
+        for (let i = 0; i < data.location.length; i++) {
+          searchItem += `<div class="cityshow" id="${data.location[i].id}">${data.location[i].adm1},${data.location[i].adm2},${data.location[i].name}</div>`;
+        }
+        searchList.innerHTML = searchItem;
+      });
+    } else if (searchInput.value == null) {
+      let searchItem = "";
+      searchList.innerHTML = searchItem;
+    }
+  }, 1000);
+  loc.ontouchend = () => {
+    search.style.animation = "showSearch 0.2s linear forwards";
+    document.querySelector("body").style.overflow = "hidden";
+  };
+  btnCancel.ontouchend = () => {
+    search.style.animation = "hiddenSearch 0.2s linear forwards";
+    searchList.style.visibility = "hidden";
+    document.querySelector("body").style.overflow = "auto";
+  };
+  btnClean.ontouchend = () => {
+    history = [];
+    renderHistory();
+    document.querySelector("#ct-history").style.visibility = "hidden";
+  };
+
+
   ajaxGet("./json/data.json", {}).then((req) => {
     //最下面那栏
     let pointdata = JSON.parse(req);
@@ -312,7 +316,7 @@ function request() {
     spage.innerHTML = spagehtml;
     for (let i = 0; i < 16; i++) {
       if (i < 8)
-        fpage.children[i].ontouchstart = debounce(() => {
+        fpage.children[i].onclick =() => {
           topItem.innerHTML = `${pointdata.data[i].topText}`;
           text.innerHTML = `${pointdata.data[i].text}`;
           topItem.style.backgroundColor = `${pointdata.data[i].bgcolor}`;
@@ -320,9 +324,9 @@ function request() {
           mask.setAttribute("class", "btmask-on");
           document.querySelector("body").style.overflow = "hidden";
           getBtn.style.backgroundColor = `${pointdata.data[i].bgcolor}`;
-        }, 200);
+        }
       else {
-        spage.children[i - 8].ontouchstart = debounce(() => {
+        spage.children[i - 8].onclick = () => {
           topItem.innerHTML = `${pointdata.data[i].topText}`;
           text.innerHTML = `${pointdata.data[i].text}`;
           topItem.style.backgroundColor = `${pointdata.data[i].bgcolor}`;
@@ -330,7 +334,7 @@ function request() {
           mask.setAttribute("class", "btmask-on");
           document.querySelector("body").style.overflow = "hidden";
           getBtn.style.backgroundColor = `${pointdata.data[i].bgcolor}`;
-        }, 200);
+        }
       }
     }
     getBtn.ontouchend = () => {
@@ -442,7 +446,7 @@ function request() {
             hourlyText += `<li>
             <p class="clockTxt">${sunrise}</p>
             <img class="weatherIcon" src="./images/rise.png" />
-            <p class="clockTemp">日出</p>
+            <p class="sun">日出</p>
           </li>`;
           }
           if (
@@ -451,7 +455,7 @@ function request() {
             hourlyText += `<li>
             <p class="clockTxt">${sunset}</p>
             <img class="weatherIcon" src="./images/set.png" />
-            <p class="clockTemp">日落</p>
+            <p class="sun">日落</p>
           </li>`;
           }
         }

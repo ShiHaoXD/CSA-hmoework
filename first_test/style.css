@@ -432,7 +432,7 @@ html {
   height: 12px;
   color: #999;
 }
-.hoursWeather li .clockTemp {
+.hoursWeather li .clockTemp ,.sun{
   font-size: 14px;
   color: #434343;
   line-height: 14px;
