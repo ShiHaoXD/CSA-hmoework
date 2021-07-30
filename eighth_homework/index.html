@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>animate</title>
+    <style>
+        .ball1 {
+
+            width: 50px;
+
+            height: 50px;
+
+            background-color: aqua;
+
+            border-radius: 50%;
+
+            transform: translateX(0);
+
+        }
+
+        .ball2 {
+
+            width: 50px;
+
+            height: 50px;
+
+            background-color: darkorange;
+
+            border-radius: 50%;
+
+            transform: translateX(0);
+
+        }
+
+        .ball3 {
+
+            width: 50px;
+
+            height: 50px;
+
+            background-color: slategrey;
+
+            border-radius: 50%;
+
+            transform: translateX(0);
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ball ball1" style="margin-left: 0"></div>
+    <div class="ball ball2" style="margin-left: 0"></div>
+    <div class="ball ball3" style="margin-left: 0"></div>
+    <script>
+        var ball1 = document.querySelector(".ball1");
+        var ball2 = document.querySelector(".ball2");
+        var ball3 = document.querySelector(".ball3");
+        //回调
+        // function move(ball, target, callback) {
+        //     setTimeout(function () {
+        //         var marginLeft = parseInt(ball.style.marginLeft, 10);
+        //         if (marginLeft === target) {
+        //             callback && callback();
+        //         } else {
+        //             if (marginLeft < target) {
+        //                 marginLeft += 2;
+        //             } else {
+        //                 marginLeft -= 2;
+        //             }
+        //             ball.style.marginLeft = marginLeft + "px";
+        //             move(ball, target, callback);
+        //         }
+        //     }, 10);
+        // }
+        // move(ball1, 100, function () {
+        //     move(ball2, 100, function () {
+        //         move(ball3, 100, function () {
+        //             console.log("over");
+        //         })
+        //     })
+        // });
+
+        //promise
+        // function move(ball, target) {
+        //     return new Promise(function (resolve, reject) {
+        //         function animate(ball, target) {
+        //             setTimeout(function () {
+        //                 var marginLeft = parseInt(ball.style.marginLeft, 10);
+        //                 if (marginLeft === target) {
+        //                     resolve();
+        //                 } else {
+        //                     if (marginLeft < target) {
+        //                         marginLeft += 2;
+        //                     } else {
+        //                         marginLeft -= 2;
+        //                     }
+        //                     ball.style.marginLeft = marginLeft + "px";
+        //                     animate(ball, target);
+        //                 }
+        //             }, 10);
+        //         }
+        //         animate(ball, target);
+        //     });
+        // }
+        // move(ball1, 100)
+        //     .then(function () {
+        //         return move(ball2, 100);
+        //     })
+        //     .then(function () {
+        //         return move(ball3, 100);
+        //     })
+
+        //await
+        function move(ball, target) {
+            return new Promise(function (resolve, reject) {
+                function animate(ball, target) {
+                    setTimeout(function () {
+                        var marginLeft = parseInt(ball.style.marginLeft, 10);
+                        if (marginLeft === target) {
+                            resolve();
+                        } else {
+                            if (marginLeft < target) {
+                                marginLeft += 2;
+                            } else {
+                                marginLeft -= 2;
+                            }
+                            ball.style.marginLeft = marginLeft + "px";
+                            animate(ball, target);
+                        }
+                    }, 10);
+                }
+                animate(ball, target);
+            });
+        }
+        async function go() {
+            const a = await move(ball1, 100);
+            const b = await move(ball2, 100);
+            const c = await move(ball3, 100);
+        }
+        go();
+    </script>
+</body>
+
+</html>
